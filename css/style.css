@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap");
+
+:root {
+  --bg: #f3f6f9;
+  --phone-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --accent: #007bff;
+  --muted: #556;
+  --shadow: 0 12px 30px rgba(20, 30, 60, 0.12);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Poppins, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+/* Phone frame */
+.phone-frame {
+  width: 360px;
+  max-width: 92vw;
+  height: 780px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(250, 250, 250, 0.95)
+  );
+  border-radius: 48px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.phone-surface {
+  position: absolute;
+  inset: 0;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Notch / status */
+.status-bar {
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.notch {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6px;
+  width: 160px;
+  height: 30px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.02));
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/* Loading screen */
+.loading-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--phone-bg);
+  backdrop-filter: blur(6px);
+  z-index: 30;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loader {
+  width: 54px;
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.loader > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #4aa3ff);
+  animation: load 1.8s linear forwards;
+}
+
+@keyframes load {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.loading-text {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* Home (grid of icons) */
+.home-screen {
+  display: grid;
+  position: absolute;
+  inset: 56px 12px 18px 12px;
+  padding: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 150px;
+  gap: 14px;
+  align-content: end; /* centra el grid verticalmente */
+  justify-items: center; /* centra los items horizontalmente */
+
+  /* Fondo de pantalla */
+  background-image: url("/assets/foto-perfil2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding-top: 150px; /* espacio superior para título y rostro */
+  border-radius: 18px;
+}
+
+.home-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.4); /* ajusta la transparencia */
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  z-index: -1; /* detrás de los iconos */
+}
+
+.home-title {
+  position: absolute;
+  top: 18px;
+  width: 100%;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: #008fff; /* azul vivo */
+  background: rgba(255, 255, 255, 0.8); /* negro semitransparente */
+  text-shadow: 0 2px 3px rgb(0, 0, 0); /* sombra más marcada */
+  pointer-events: none;
+  z-index: 10;
+}
+
+.app-icon {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(250, 250, 250, 0.8)
+  );
+  border-radius: 18px;
+  padding: 10px;
+  gap: 6px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centrar horizontalmente */
+  justify-content: center; /* centrar verticalmente */
+
+  width: 80%; /* ocupa el espacio de la columna del grid */
+  aspect-ratio: 1 / 1; /* altura igual al ancho */
+
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(16, 24, 40, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.app-icon:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(16, 24, 40, 0.08);
+}
+
+.app-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #071028;
+}
+
+.app-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* App screens */
+.app-screen {
+  position: absolute;
+  inset: 56px 12px 18px 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    rgba(250, 250, 250, 0.9)
+  );
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  gap: 32px;
+  overflow: auto;
+}
+
+.app-screen.show {
+  display: flex;
+  animation: slideIn 320ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.app-screen.hide {
+  animation: slideOut 260ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(18%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(18%);
+    opacity: 0;
+  }
+}
+
+.back-btn {
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #071028;
+}
+
+.divider {
+  height: 2px; /* un poco más grueso */
+  background: rgba(0, 0, 0, 0.15); /* más visible */
+  border-radius: 4px;
+  margin: 12px 0;
+  width: 100%;
+}
+
+/* Centrar content y chips */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: start;
+  gap: 16px;
+}
+
+.content p {
+  color: var(--muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Contact small cards */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: transparent;
+}
+
+/* small helpers */
+.muted {
+  color: var(--muted);
+}
+
+/* Responsive tweaks for mobile */
+@media (max-width: 768px) {
+  /* Phone frame ocupa casi toda la pantalla */
+  .phone-frame {
+    width: 92vw;
+    height: 94vh;
+    border-radius: 28px;
+  }
+
+  /* Home screen grid más compacto */
+  .home-screen {
+    inset: 50px 8px 12px 8px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    gap: 0;
+  }
+
+  .home-screen::before {
+    inset: 0;
+    border-radius: 18px;
+  }
+
+  .home-title {
+    font-size: 22px;
+    top: 14px;
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  /* App icons más grandes y con más espacio */
+  .app-icon {
+    width: 60%; /* más pequeño para que quepa */
+    padding: 0.5rem; /* menos padding */
+  }
+
+  /* App screens más adaptadas */
+  .app-screen {
+    inset: 50px 8px 12px 8px;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  /* Centrar content y chips */
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .chip {
+    gap: 12px;
+    padding: 10px 14px;
+  }
+}

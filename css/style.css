@@ -143,7 +143,7 @@ body {
   justify-items: center; /* centra los items horizontalmente */
 
   /* Fondo de pantalla */
-  background-image: url("../assets/foto-perfil2.jpg");
+  background-image: url('../assets/foto-perfil2.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

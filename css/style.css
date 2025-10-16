@@ -143,12 +143,11 @@ body {
   justify-items: center; /* centra los items horizontalmente */
 
   /* Fondo de pantalla */
-  background-image: url('../assets/foto-perfil2.jpg');
+  background-image: url("../assets/foto-perfil2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  padding-top: 150px; /* espacio superior para título y rostro */
   border-radius: 18px;
 }
 
@@ -231,7 +230,7 @@ body {
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: stretch;
+  justify-content: start;
   gap: 32px;
   overflow: auto;
 }
@@ -324,58 +323,94 @@ body {
   color: var(--muted);
 }
 
-/* Responsive tweaks for mobile */
+/* ===================== */
+/* === MODO MÓVIL FULLSCREEN SIN MARCO + MENU iOS === */
+/* ===================== */
 @media (max-width: 768px) {
-  /* Phone frame ocupa casi toda la pantalla */
+  /* Eliminar marco para usar pantalla completa real */
+  .stage {
+    padding: 0;
+  }
+
   .phone-frame {
-    width: 92vw;
-    height: 94vh;
-    border-radius: 28px;
+    min-height: 100vh;
+    min-width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
   }
 
-  /* Home screen grid más compacto */
+  .notch,
+  .status-bar {
+    display: none !important;
+  }
+
+  .phone-surface {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  /* Home pasa a diseño vertical tipo ajustes */
   .home-screen {
-    inset: 50px 8px 12px 8px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 200px;
-    gap: 0;
-  }
-
-  .home-screen::before {
+    padding: 2rem;
     inset: 0;
-    border-radius: 18px;
+    border-radius: 0;
+    gap: 2rem;
+    background-position: center;
+    background-size: cover;
   }
 
   .home-title {
-    font-size: 22px;
-    top: 14px;
-    background: rgba(255, 255, 255, 0.85);
+    font-size: 20px;
+    top: 16px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(6px);
   }
 
-  /* App icons más grandes y con más espacio */
+  /* Tarjetas estilo iOS Ajustes */
   .app-icon {
-    width: 60%; /* más pequeño para que quepa */
-    padding: 0.5rem; /* menos padding */
+    width: 100%;
+    max-width: 150px;
+    height: 80%;
+    aspect-ratio: unset;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5rem 0.5rem;
+    border-radius: 12px;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
   }
 
-  /* App screens más adaptadas */
-  .app-screen {
-    inset: 50px 8px 12px 8px;
-    padding: 16px;
-    gap: 16px;
+  .app-title {
+    font-size: 16px;
   }
 
-  /* Centrar content y chips */
-  .content {
+  .app-sub {
+    font-size: 12px;
+  }
+
+  .app-icon div {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 16px;
+    gap: 2px;
   }
 
-  .chip {
-    gap: 12px;
-    padding: 10px 14px;
+  /* App screens adaptadas */
+  .app-screen {
+    inset: 0;
+    border-radius: 0;
+    padding: 20px;
+    gap: 16px;
+    backdrop-filter: blur(6px);
+  }
+
+  .content {
+    text-align: center;
+    padding: 0 6px;
   }
 }

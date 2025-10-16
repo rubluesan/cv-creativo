@@ -346,15 +346,8 @@ body {
     display: none !important;
   }
 
-  .phone-surface {
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-  }
-
   /* Home pasa a diseño vertical tipo ajustes */
   .home-screen {
-    padding: 2rem;
     inset: 0;
     border-radius: 0;
     gap: 2rem;
@@ -373,8 +366,6 @@ body {
   .app-icon {
     width: 100%;
     max-width: 150px;
-    height: 80%;
-    aspect-ratio: unset;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -410,7 +401,6 @@ body {
   }
 
   .content {
-    text-align: center;
-    padding: 0 6px;
+    padding: 1rem;
   }
 }
